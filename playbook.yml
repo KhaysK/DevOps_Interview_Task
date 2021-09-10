@@ -1,0 +1,11 @@
+#################################################
+# DO Community Playbooks: Docker
+#################################################
+---
+- name: Install and Build Docker with Web Application 
+  hosts: all
+  become: true
+
+  roles:
+    - { role: docker_install, when: ansible_os_family = 'Ubuntu' }
+    - { role: build_docker, when: ansible_os_family = 'Ubuntu' }

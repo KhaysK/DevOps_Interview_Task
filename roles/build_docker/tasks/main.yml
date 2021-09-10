@@ -1,0 +1,13 @@
+---
+# tasks file for build_docker
+- name: Copy Python Project With Dockerfile 
+  copy: src={{ item }} dest={{ destin_file }} mode=0555
+  with_fileglob: "interview/*.*"
+
+- name: Build and Start Doceker Image
+      docker_image:
+        name: webdocker:v1.0
+        build:
+          path: /home/$USER/interview
+          source: build
+        state: started
